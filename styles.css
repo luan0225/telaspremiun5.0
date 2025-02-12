@@ -115,7 +115,7 @@ h1 {
 
 .carousel-images img {
     width: 100%;
-    height: 400px;
+    height: 100%;
     object-fit: cover;
     flex-shrink: 0;
     display: none;
@@ -124,6 +124,8 @@ h1 {
 .carousel-images img.active {
     display: block;
 }
+
+
 
 .produtos {
     margin-top: 40px;
@@ -553,3 +555,71 @@ footer {
     width: 100%;
     bottom: 0;
 }
+
+.produtos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsivo */
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+.produto {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.produto:hover {
+    transform: scale(1.05);
+}
+
+.produto img {
+    width: 100%;
+    max-width: 150px; /* Ajuste conforme necessário */
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.btn-opcoes {
+    background: #007BFF;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.btn-opcoes:hover {
+    background: #0056b3;
+}
+
+.opcoes {
+    display: none;
+    margin-top: 10px;
+}
+
+.option-button {
+    display: block;
+    width: 100%;
+    margin-top: 5px;
+    padding: 8px;
+    background: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.option-button:hover {
+    background: #218838;
+}
+
+

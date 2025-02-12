@@ -23,6 +23,10 @@
     <label for="telefone">Telefone:</label>
     <input type="tel" id="telefone" required>
 
+    <!-- Adicionando campo de cupom de desconto -->
+    <label for="cupom">Cupom de desconto (opcional):</label>
+    <input type="text" id="cupom">
+
     <button type="submit">Enviar Informações</button>
 </form>
 
@@ -31,10 +35,26 @@
     const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
     const totalCarrinho = parseFloat(localStorage.getItem('totalCarrinho')) || 0;
 
+    // Lista de cupons válidos
+    const cuponsValidos = {
+        "ARTHUR": 0.05,  // 5% de desconto
+        "ADLL": 0.10,    // 10% de desconto
+        // Você pode adicionar mais cupons aqui
+    };
+
     function enviarDadosWhatsApp() {
         const nome = document.getElementById('nome').value;
         const formaPagamento = document.getElementById('forma-pagamento').value;
         const telefone = document.getElementById('telefone').value;
+        const cupom = document.getElementById('cupom').value.trim(); // Captura o cupom
+
+        let totalComDesconto = totalCarrinho;
+
+        // Verifica se o cupom é válido e aplica o desconto
+        if (cuponsValidos[cupom]) {
+            const desconto = cuponsValidos[cupom]; // Pega o valor do desconto
+            totalComDesconto = totalCarrinho - totalCarrinho * desconto;
+        }
 
         // Criar uma mensagem com as informações do formulário
         let mensagem = `Nome: ${nome}\nForma de pagamento: ${formaPagamento}\nTelefone: ${telefone}\n\nProdutos:\n`;
@@ -44,8 +64,8 @@
             mensagem += `${item.produto} - R$ ${item.preco.toFixed(2).replace('.', ',')}\n`;
         });
 
-        // Adicionar total à mensagem
-        mensagem += `\nTotal: R$ ${totalCarrinho.toFixed(2).replace('.', ',')}`;
+        // Adiciona o total à mensagem
+        mensagem += `\nTotal: R$ ${totalComDesconto.toFixed(2).replace('.', ',')}`;
 
         // Codifica a mensagem para URL
         const mensagemCodificada = encodeURIComponent(mensagem);
