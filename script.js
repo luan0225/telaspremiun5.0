@@ -140,16 +140,3 @@ function enviarDadosWhatsApp() {
 }
 
 
-document.addEventListener("DOMContentLoaded", function () {
-    let currentIndex = 0;
-    const images = document.querySelectorAll("#carousel-images img");
-    const totalImages = images.length;
-
-    function changeImage() {
-        images[currentIndex].classList.remove("active"); // Remove a classe da imagem atual
-        currentIndex = (currentIndex + 1) % totalImages; // Atualiza o índice
-        images[currentIndex].classList.add("active"); // Adiciona a classe à nova imagem
-    }
-
-    setInterval(changeImage, 4000); // Troca de imagem a cada 4 segundos
-});
