@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout</title>
-    <link rel="stylesheet" href="stylescheck.css"> <!-- Adicione aqui -->
+    <link rel="stylesheet" href="stylescheck.css">
 </head>
 <body>
 
@@ -23,9 +23,8 @@
     <label for="telefone">Telefone:</label>
     <input type="tel" id="telefone" required>
 
-    <!-- Adicionando campo de cupom de desconto -->
     <label for="cupom">Cupom de desconto (opcional):</label>
-    <input type="text" id="cupom">
+    <input type="text" id="cupom" oninput="atualizarTotalComDesconto()">
 
     <button type="submit">Enviar Informações</button>
 </form>
@@ -36,68 +35,47 @@
 <script>
 // Carregar carrinho e total do localStorage
 const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
-const totalCarrinho = parseFloat(localStorage.getItem('totalCarrinho')) || 0;
 
 // Lista de cupons válidos
 const cuponsValidos = {
-    "ARTHUR": 0.05,  // 5% de desconto
-    "ADLL": 0.10,    // 10% de desconto
-    // Adicione mais cupons conforme necessário
+    "ARTHUR": 0.10,      // 10% de desconto
+    "CLIENTEVIP": 0.50   // 50% de desconto
 };
+
+// Função para calcular o total do carrinho
+function calcularTotalCarrinho() {
+    return carrinho.reduce((acc, item) => acc + item.preco, 0);
+}
+
+// Função para calcular o total com desconto
+function calcularTotalComDesconto(cupom) {
+    let total = calcularTotalCarrinho();
+
+    if (cuponsValidos[cupom]) {
+        let desconto = total * cuponsValidos[cupom];
+        total -= desconto;
+    }
+
+    return total;
+}
 
 // Função para formatar o valor como moeda
 function formatarMoeda(valor) {
     return `R$ ${valor.toFixed(2).replace('.', ',')}`;
 }
 
-// Função para calcular o total com desconto
-function calcularTotalComDesconto(totalCarrinho, cupom) {
-    let totalComDesconto = totalCarrinho;
-
-    if (cuponsValidos[cupom]) {
-        const desconto = cuponsValidos[cupom]; // Pega o valor do desconto
-        totalComDesconto = totalCarrinho - totalCarrinho * desconto;
-    }
-
-    return totalComDesconto;
-}
-
-// Função para gerar mensagem com os dados do pedido
-function gerarMensagem(nome, formaPagamento, telefone, cupom, totalComDesconto) {
-    let mensagem = `Nome: ${nome}\nForma de pagamento: ${formaPagamento}\nTelefone: ${telefone}\n\nProdutos:\n`;
-
-    carrinho.forEach(item => {
-        mensagem += `${item.produto} - ${formatarMoeda(item.preco)}\n`;
-    });
-
-    if (cuponsValidos[cupom]) {
-        const valorDesconto = totalCarrinho * cuponsValidos[cupom];
-        mensagem += `\nCupom aplicado: ${cupom}\nDesconto: ${formatarMoeda(valorDesconto)}\n`;
-    }
-
-    mensagem += `\nTotal: ${formatarMoeda(totalComDesconto)}`;
-
-    return encodeURIComponent(mensagem);
-}
-
-// Função para enviar os dados para o WhatsApp
-function enviarDadosWhatsApp() {
-    const nome = document.getElementById('nome').value;
-    const formaPagamento = document.getElementById('forma-pagamento').value;
-    const telefone = document.getElementById('telefone').value;
-    const cupom = document.getElementById('cupom').value.trim();
-
-    const totalComDesconto = calcularTotalComDesconto(totalCarrinho, cupom);
-    const mensagemCodificada = gerarMensagem(nome, formaPagamento, telefone, cupom, totalComDesconto);
-
-    const linkWhatsApp = `https://wa.me/5592984011876?text=${mensagemCodificada}`;
-    window.open(linkWhatsApp, '_blank');
+// Atualiza o total ao digitar o cupom
+function atualizarTotalComDesconto() {
+    const cupom = document.getElementById('cupom').value.trim().toUpperCase();
+    const total = calcularTotalComDesconto(cupom);
+    document.getElementById('total').innerText = `Total: ${formatarMoeda(total)}`;
 }
 
 // Função para exibir produtos e total no checkout
 function exibirCheckoutInfo() {
     const checkoutInfo = document.getElementById('checkout-info');
-    
+    checkoutInfo.innerHTML = ""; // Limpa antes de adicionar os elementos
+
     const listaProdutos = document.createElement('ul');
     carrinho.forEach(item => {
         const li = document.createElement('li');
@@ -108,13 +86,45 @@ function exibirCheckoutInfo() {
     checkoutInfo.appendChild(listaProdutos);
 
     const totalElement = document.createElement('p');
-    totalElement.innerText = `Total: ${formatarMoeda(totalCarrinho)}`;
+    totalElement.id = "total";
+    totalElement.innerText = `Total: ${formatarMoeda(calcularTotalCarrinho())}`;
     checkoutInfo.appendChild(totalElement);
+}
+
+// Função para gerar mensagem com os dados do pedido
+function gerarMensagem(nome, formaPagamento, telefone, cupom, total) {
+    let mensagem = `Nome: ${nome}\nForma de pagamento: ${formaPagamento}\nTelefone: ${telefone}\n\nProdutos:\n`;
+
+    carrinho.forEach(item => {
+        mensagem += `${item.produto} - ${formatarMoeda(item.preco)}\n`;
+    });
+
+    if (cuponsValidos[cupom]) {
+        let descontoValor = calcularTotalCarrinho() * cuponsValidos[cupom];
+        mensagem += `\nCupom aplicado: ${cupom}\nDesconto: ${formatarMoeda(descontoValor)}\n`;
+    }
+
+    mensagem += `\nTotal: ${formatarMoeda(total)}`;
+
+    return encodeURIComponent(mensagem);
+}
+
+// Função para enviar os dados para o WhatsApp
+function enviarDadosWhatsApp() {
+    const nome = document.getElementById('nome').value;
+    const formaPagamento = document.getElementById('forma-pagamento').value;
+    const telefone = document.getElementById('telefone').value;
+    const cupom = document.getElementById('cupom').value.trim().toUpperCase(); // Normaliza o cupom
+
+    const totalComDesconto = calcularTotalComDesconto(cupom);
+    const mensagemCodificada = gerarMensagem(nome, formaPagamento, telefone, cupom, totalComDesconto);
+
+    const linkWhatsApp = `https://wa.me/5592984011876?text=${mensagemCodificada}`;
+    window.open(linkWhatsApp, '_blank');
 }
 
 // Exibir as informações de checkout na página
 exibirCheckoutInfo();
-
 </script>
 
 </body>

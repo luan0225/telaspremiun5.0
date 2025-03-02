@@ -8,36 +8,53 @@
 </head>
 <body>
 
-<header>
-    <div class="logo">
-        <img src="images/logo.png" alt="Logo Arthur Lian">
-    </div>
-    <nav>
-        <a href="#produtos">Produtos</a>
-        <a href="#" id="combos-link">Combos</a>
-        <a href="#doacao">Doação</a>
-        <a href="https://wa.me/5592984011876" style="color:white;">Suporte</a>
-        <div class="carrinho" onclick="toggleCarrinho()">
-            <img src="images/carrinho.png" alt="Carrinho de Compras">
-            <div class="itens-carrinho" id="itens-carrinho">
-                <ul id="lista-itens"></ul>
-                <p id="total-carrinho">Total: R$ 0,00</p>
-                <a href="checkout.html" id="btn-finalizar">Finalizar Compra</a>
-            </div>
+    <header>
+        <div class="logo">
+            <img src="images/logo.png" alt="Logo Arthur Lian">
         </div>
-    </nav>
-</header>
+        <nav>
+            <a href="#produtos">Produtos</a>
+            <a href="#" id="combos-link">Combos</a>
+            <a href="#doacao">Doação</a>
+            <a href="#" id="admin-link">Admin</a> <!-- Alterado para usar JavaScript -->
+            <a href="https://wa.me/5592984011876" style="color:white;">Suporte</a>
+            <div class="carrinho" onclick="toggleCarrinho()">
+                <img src="images/carrinho.png" alt="Carrinho de Compras">
+                <div class="itens-carrinho" id="itens-carrinho">
+                    <ul id="lista-itens"></ul>
+                    <p id="total-carrinho">Total: R$ 0,00</p>
+                    <a href="checkout.html" id="btn-finalizar">Finalizar Compra</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <script>
+        document.getElementById("admin-link").addEventListener("click", function () {
+            let senha = prompt("Digite a senha para acessar o painel de administração:");
+            if (senha === "Drika25") {
+                window.location.href = "admin.html";
+            } else {
+                alert("Senha incorreta! Acesso negado.");
+            }
+        });
+    </script>
+    
 
 <main>
     <h1>Catálogo</h1>
 
     <div class="carousel">
         <div class="carousel-images" id="carousel-images">
-            <img src="images/carrosel1.png" alt="Imagem 1" class="active">
-            <img src="images/Bogota.png" alt="Imagem 4">
-            <img src="images/att2.0.jpg" alt="Imagem 7">
-            <img src="images/BBB.jpg" alt="Imagem 8">
-            <img src="images/Beleza_Fatal_logo.jpg" alt="Imagem 9">
+            <img src="images/ATT.PNG" alt="Imagem 1" class="active">
+            <img src="images/att2.png" alt="Imagem 4">
+            <img src="images/att3.png" alt="Imagem 7">
+            <img src="images/att4.png" alt="Imagem 8">
+            <img src="images/att6.png" alt="Imagem 9">
+            <img src="images/att7.png" alt="Imagem 10">
+            <img src="images/att8.png" alt="Imagem 11">
+            <img src="images/att10.png" alt="Imagem 12">
+            <img src="images/att12.png" alt="Imagem 13">
         </div>
     </div>
 

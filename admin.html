@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Compras de Contas e Armazenamento de Informações</title>
+    <link rel="stylesheet" href="styleAdm.css">
+</head>
+<body>
+
+    <h1>Controle de Compras de Contas e Armazenamento de Informações</h1>
+
+    <div class="counter-container">
+        <h3>Contagem de Contas Vendidas: <span id="accountCount">0</span></h3>
+    </div>
+
+    <h2>Inserir Informações de Compra</h2>
+    
+    <div class="input-container">
+        <label for="customerName">Nome do Cliente:</label><br>
+        <input type="text" id="customerName" placeholder="Digite o nome do cliente">
+    </div>
+    
+    <div class="input-container">
+        <label for="customerPhone">Telefone do Cliente:</label><br>
+        <input type="text" id="customerPhone" placeholder="Digite o telefone do cliente">
+    </div>
+
+    <h2>Colar Modelo de Compra</h2>
+    <div class="textarea-container">
+        <textarea id="purchaseText" rows="8" cols="60" placeholder="Cole aqui o modelo da compra"></textarea>
+    </div>
+    <button onclick="savePurchaseInfo()">Salvar Informações da Compra</button>
+
+    <h2>Pesquisar Cliente</h2>
+    <div class="search-container">
+        <label for="searchInput">Pesquisar por nome ou email:</label><br>
+        <input type="text" id="searchInput" onkeyup="searchCustomer()" placeholder="Digite para pesquisar...">
+    </div>
+
+    <h2>Informações Armazenadas</h2>
+    <table id="infoTable">
+        <thead>
+            <tr>
+                <th>Nome do Cliente</th>
+                <th>Telefone</th>
+                <th>Email</th>
+                <th>Senha</th>
+                <th>Nome da Tela</th>
+                <th>Data de Expiração</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- As informações das compras serão exibidas aqui -->
+        </tbody>
+    </table>
+
+   
+    <script src="scriptAdm.js"></script>
+</body>
+</html>

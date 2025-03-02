@@ -1,19 +1,22 @@
-// Dados de produtos simulados
+// Dados simulados do carrinho
 const carrinho = [
     { produto: "Produto 1", preco: 29.99 },
     { produto: "Produto 2", preco: 19.99 }
 ];
 
-// Cupom válido e desconto
-const cupomValido = "DESCONTO10";
-const desconto = 0.10; // 10%
+// Cupons de desconto
+const cupons = {
+    "ARTHUR": 0.10,      // 10% de desconto
+    "CLIENTEVIP": 0.50   // 50% de desconto
+};
 
-// Função para calcular o total com ou sem desconto
+// Função para calcular o total com cupom
 function calcularTotal(carrinho, cupom) {
     let total = carrinho.reduce((acc, item) => acc + item.preco, 0);
 
-    if (cupom === cupomValido) {
-        total -= total * desconto;
+    if (cupons[cupom]) {
+        let desconto = total * cupons[cupom]; // Aplica o desconto corretamente
+        total -= desconto;
     }
 
     return total;
@@ -24,29 +27,20 @@ function formatarMoeda(valor) {
     return `R$ ${valor.toFixed(2).replace('.', ',')}`;
 }
 
-// Função para montar a mensagem do pedido
+// Função para gerar a mensagem do pedido
 function gerarMensagem(nome, formaPagamento, telefone, cupom, total) {
-    let mensagem = `
-Nome: ${nome}
-Forma de pagamento: ${formaPagamento}
-Telefone: ${telefone}
-Produtos:
-`;
+    let mensagem = `Nome: ${nome}\nForma de pagamento: ${formaPagamento}\nTelefone: ${telefone}\nProdutos:\n`;
 
     carrinho.forEach(item => {
         mensagem += `- ${item.produto}: ${formatarMoeda(item.preco)}\n`;
     });
 
-    if (cupom === cupomValido) {
-        const valorDesconto = total * desconto;
-        mensagem += `
-Cupom aplicado: ${cupomValido}
-Desconto: ${formatarMoeda(valorDesconto)}
-`;
+    if (cupons[cupom]) {
+        let valorDesconto = (carrinho.reduce((acc, item) => acc + item.preco, 0)) * cupons[cupom];
+        mensagem += `\nCupom aplicado: ${cupom}\nDesconto: ${formatarMoeda(valorDesconto)}\n`;
     }
 
     mensagem += `\nTotal: ${formatarMoeda(total)}`;
-
     return mensagem;
 }
 
@@ -66,23 +60,18 @@ document.getElementById('checkout-form').addEventListener('submit', function(eve
     const nome = document.getElementById('nome').value.trim();
     const formaPagamento = document.getElementById('forma-pagamento').value;
     const telefone = document.getElementById('telefone').value.trim();
-    const cupom = document.getElementById('cupom').value.trim();
+    const cupom = document.getElementById('cupom').value.trim().toUpperCase(); // Normaliza o cupom
 
     // Valida os campos
     if (!validarCampos(nome, formaPagamento, telefone)) return;
 
-    // Calcula o total
+    // Calcula o total com ou sem cupom
     const total = calcularTotal(carrinho, cupom);
 
-    // Gera a mensagem
+    // Gera a mensagem do pedido
     const mensagem = gerarMensagem(nome, formaPagamento, telefone, cupom, total);
 
-    // Codifica a mensagem para URL
-    const mensagemCodificada = encodeURIComponent(mensagem);
-
-    // Cria o link do WhatsApp
-    const linkWhatsApp = `https://wa.me/5592984011876?text=${mensagemCodificada}`;
-
-    // Redireciona para o WhatsApp
+    // Cria o link do WhatsApp e redireciona
+    const linkWhatsApp = `https://wa.me/5592984011876?text=${encodeURIComponent(mensagem)}`;
     window.open(linkWhatsApp, '_blank');
 });
