@@ -1,39 +1,45 @@
 /* Estilo Geral */
-body {
-    font-family: 'Roboto', sans-serif;
+* {
     margin: 0;
     padding: 0;
-    background-color: #f9f9f9;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f7fc;
     color: #333;
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: flex-start;
     min-height: 100vh;
+    padding: 30px;
 }
 
 h1, h2, h3 {
     color: #333;
     font-weight: 600;
     text-align: center;
+    margin-bottom: 20px;
 }
 
 h1 {
-    font-size: 30px;
-    margin: 20px 0;
+    font-size: 36px;
+    margin-top: 0;
 }
 
 h2, h3 {
-    font-size: 22px;
-    margin: 15px 0;
+    font-size: 24px;
 }
 
-/* Container geral */
+/* Container principal */
 .container {
     width: 100%;
     max-width: 1200px;
-    padding: 20px;
-    box-sizing: border-box;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 40px;
 }
 
 /* Estilo da tabela */
@@ -41,13 +47,10 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
 }
 
 th, td {
-    padding: 12px;
+    padding: 12px 15px;
     text-align: left;
     border-bottom: 1px solid #f1f1f1;
     font-size: 14px;
@@ -72,8 +75,9 @@ tr:hover td {
 input, textarea {
     width: 100%;
     padding: 12px;
-    margin: 10px 0;
-    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border-radius: 6px;
     border: 1px solid #ccc;
     font-size: 16px;
     background-color: #fff;
@@ -85,78 +89,59 @@ input:focus, textarea:focus {
     outline: none;
 }
 
-/* Botões */
-button {
+/* Estilo para o botão primário */
+button.primary-btn {
     background-color: #3498db;
     color: white;
     font-size: 16px;
-    padding: 14px;
+    padding: 14px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
     cursor: pointer;
     width: 100%;
     transition: background-color 0.3s ease;
 }
 
-button:hover {
+button.primary-btn:hover {
     background-color: #2980b9;
-}
-
-/* Container para os botões de ação */
-.action-buttons {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-/* Botões de ação na tabela */
-button.action-btn {
-    width: 100px;
-    font-size: 14px;
 }
 
 /* Estilo para pesquisa */
 .search-container {
-    width: 100%;
-    max-width: 600px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .search-container input {
     width: 100%;
     padding: 14px;
     font-size: 16px;
-    border-radius: 5px;
+    border-radius: 6px;
     border: 1px solid #ccc;
 }
 
-/* Estilos do container do modelo de compra */
-.textarea-container {
-    width: 100%;
-    max-width: 600px;
-    margin: 20px 0;
-}
-
-/* Contador de contas */
-.counter-container {
-    font-size: 20px;
-    margin: 10px 0;
-    text-align: center;
+/* Container para os botões de ação */
+button.action-btn {
+    width: 100px;
+    font-size: 14px;
+    padding: 10px;
 }
 
 /* Responsividade */
 @media screen and (max-width: 768px) {
+    body {
+        padding: 20px;
+    }
+
     h1 {
-        font-size: 24px;
+        font-size: 28px;
     }
 
     h2, h3 {
-        font-size: 18px;
+        font-size: 20px;
     }
 
     .container {
-        padding: 10px;
+        padding: 20px;
     }
 
     table {
@@ -167,31 +152,26 @@ button.action-btn {
         padding: 8px;
     }
 
-    .textarea-container {
-        margin: 10px 0;
+    button.primary-btn {
+        padding: 12px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    h1 {
+        font-size: 24px;
+    }
+
+    h2, h3 {
+        font-size: 18px;
     }
 
     input, textarea {
         font-size: 14px;
     }
 
-    button {
-        font-size: 14px;
-        padding: 12px;
-    }
-
-    .action-buttons {
-        flex-direction: column;
-        gap: 5px;
-    }
-
-    button.action-btn {
-        width: 100%;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .search-container input {
+    button.primary-btn {
+        padding: 10px;
         font-size: 14px;
     }
 }

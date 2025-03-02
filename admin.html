@@ -8,57 +8,55 @@
 </head>
 <body>
 
-    <h1>Controle de Compras de Contas e Armazenamento de Informações</h1>
+    <div class="container">
+        <h1>Controle de Compras de Contas e Armazenamento de Informações</h1>
 
-    <div class="counter-container">
-        <h3>Contagem de Contas Vendidas: <span id="accountCount">0</span></h3>
-    </div>
+        <div class="counter-container">
+            <h3>Contagem de Contas Vendidas: <span id="accountCount">0</span></h3>
+        </div>
 
-    <h2>Inserir Informações de Compra</h2>
-    
-    <div class="input-container">
-        <label for="customerName">Nome do Cliente:</label><br>
-        <input type="text" id="customerName" placeholder="Digite o nome do cliente">
-    </div>
-    
-    <div class="input-container">
-        <label for="customerPhone">Telefone do Cliente:</label><br>
-        <input type="text" id="customerPhone" placeholder="Digite o telefone do cliente">
-    </div>
+        <div class="form-container">
+            <h2>Inserir Informações de Compra</h2>
+            <div class="input-container">
+                <label for="customerName">Nome do Cliente:</label>
+                <input type="text" id="customerName" placeholder="Digite o nome do cliente">
+            </div>
+            <div class="input-container">
+                <label for="customerPhone">Telefone do Cliente:</label>
+                <input type="text" id="customerPhone" placeholder="Digite o telefone do cliente">
+            </div>
 
-    <h2>Colar Modelo de Compra</h2>
-    <div class="textarea-container">
-        <textarea id="purchaseText" rows="8" cols="60" placeholder="Cole aqui o modelo da compra"></textarea>
-    </div>
-    <button onclick="savePurchaseInfo()">Salvar Informações da Compra</button>
+            <h2>Colar Modelo de Compra</h2>
+            <div class="textarea-container">
+                <textarea id="purchaseText" rows="8" placeholder="Cole aqui o modelo da compra"></textarea>
+            </div>
+            <button class="primary-btn" onclick="savePurchaseInfo()">Salvar Informações da Compra</button>
+        </div>
 
-    <h2>Pesquisar Cliente</h2>
-    <div class="search-container">
-        <label for="searchInput">Pesquisar por nome ou email:</label><br>
-        <input type="text" id="searchInput" onkeyup="searchCustomer()" placeholder="Digite para pesquisar...">
-    </div>
+        <div class="search-container">
+            <h2>Pesquisar Cliente</h2>
+            <label for="searchInput">Pesquisar por nome ou email:</label>
+            <input type="text" id="searchInput" onkeyup="searchCustomer()" placeholder="Digite para pesquisar...">
+        </div>
 
-    <h2>Informações Armazenadas</h2>
-    <table id="infoTable">
-        <thead>
-          <tr>
-            <th>Nome</th>
-            <th>Telefone</th>
-            <th>Email</th>
-            <th>Senha</th>
-            <th>Nome da Tela</th>
-            <th>Expiração</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    
-      
-        <tbody>
-            <!-- As informações das compras serão exibidas aqui -->
-        </tbody>
-    </table>
+        <h2>Informações Armazenadas</h2>
+        <table id="infoTable">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Telefone</th>
+                    <th>Email</th>
+                    <th>Senha</th>
+                    <th>Nome da Tela</th>
+                    <th>Expiração</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- As informações das compras serão exibidas aqui -->
+            </tbody>
+        </table>
+    </div>
 
     <script src="scriptAdm.js"></script>
 </body>
