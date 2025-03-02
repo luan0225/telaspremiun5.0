@@ -1,166 +1,197 @@
-/* Estilos gerais */
+/* Estilo Geral */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    min-height: 100vh;
 }
 
-/* Títulos */
 h1, h2, h3 {
     color: #333;
-    margin-bottom: 10px;
+    font-weight: 600;
+    text-align: center;
 }
 
-/* Título principal */
 h1 {
-    font-size: 2.5rem;
-    margin-top: 20px;
-}
-
-/* Container do contador de contas */
-.counter-container {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
+    font-size: 30px;
     margin: 20px 0;
-    border-radius: 5px;
-    font-size: 1.2rem;
 }
 
-/* Formulários de entrada */
-.input-container, .textarea-container, .search-container {
+h2, h3 {
+    font-size: 22px;
     margin: 15px 0;
-    width: 80%;
-    max-width: 500px;
 }
 
-label {
-    font-size: 1.1rem;
-    color: #333;
+/* Container geral */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
+/* Estilo da tabela */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #f1f1f1;
+    font-size: 14px;
+}
+
+th {
+    background-color: #2c3e50;
+    color: white;
+    text-transform: uppercase;
+}
+
+td {
+    background-color: #ecf0f1;
+    color: #555;
+}
+
+tr:hover td {
+    background-color: #bdc3c7;
+}
+
+/* Estilo dos Inputs e Textareas */
 input, textarea {
     width: 100%;
-    padding: 8px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
+    padding: 12px;
+    margin: 10px 0;
     border-radius: 5px;
-    margin-top: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    background-color: #fff;
+    transition: all 0.3s ease;
 }
 
-textarea {
-    resize: vertical;
+input:focus, textarea:focus {
+    border-color: #3498db;
+    outline: none;
 }
 
 /* Botões */
 button {
-    background-color: #28a745;
+    background-color: #3498db;
     color: white;
+    font-size: 16px;
+    padding: 14px;
     border: none;
-    padding: 10px 20px;
-    font-size: 1rem;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 10px;
+    width: 100%;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #218838;
+    background-color: #2980b9;
 }
 
-button:focus {
-    outline: none;
-}
-
-/* Tabela */
-table {
-    width: 80%;
-    max-width: 1000px;
-    margin-top: 20px;
-    border-collapse: collapse;
-}
-
-table, th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-}
-
-th {
-    background-color: #007bff;
-    color: white;
-    text-align: left;
-}
-
-td {
-    background-color: white;
-}
-
+/* Container para os botões de ação */
 .action-buttons {
     display: flex;
     gap: 10px;
-}
-
-.action-buttons button {
-    background-color: #ffc107;
-    color: black;
-}
-
-.action-buttons button:hover {
-    background-color: #e0a800;
-}
-
-.action-buttons button:focus {
-    outline: none;
-}
-
-/* Mensagens de sucesso */
-.message-container {
-    margin-top: 20px;
-    display: flex;
     justify-content: center;
-    align-items: center;
+    flex-wrap: wrap;
 }
 
-.message-container button {
-    background-color: #007bff;
-    color: white;
+/* Botões de ação na tabela */
+button.action-btn {
+    width: 100px;
+    font-size: 14px;
 }
 
-.message-container button:hover {
-    background-color: #0056b3;
-}
-
-/* Pesquisa */
-#searchInput {
-    padding: 10px;
-    font-size: 1rem;
+/* Estilo para pesquisa */
+.search-container {
     width: 100%;
+    max-width: 600px;
+    margin-bottom: 20px;
+}
+
+.search-container input {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
     border-radius: 5px;
     border: 1px solid #ccc;
 }
 
-/* Adicionando efeitos de foco e interação */
-input:focus, textarea:focus, #searchInput:focus {
-    border-color: #007bff;
-    outline: none;
+/* Estilos do container do modelo de compra */
+.textarea-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px 0;
 }
 
-button:active {
-    transform: scale(0.98);
+/* Contador de contas */
+.counter-container {
+    font-size: 20px;
+    margin: 10px 0;
+    text-align: center;
 }
 
-/* Mensagens e alertas */
-.alert {
-    color: red;
-    font-weight: bold;
-    margin-top: 10px;
+/* Responsividade */
+@media screen and (max-width: 768px) {
+    h1 {
+        font-size: 24px;
+    }
+
+    h2, h3 {
+        font-size: 18px;
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    table {
+        font-size: 12px;
+    }
+
+    th, td {
+        padding: 8px;
+    }
+
+    .textarea-container {
+        margin: 10px 0;
+    }
+
+    input, textarea {
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 12px;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    button.action-btn {
+        width: 100%;
+    }
 }
 
-textarea {
-    resize: none;
+@media screen and (max-width: 480px) {
+    .search-container input {
+        font-size: 14px;
+    }
 }
-
