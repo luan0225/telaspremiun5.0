@@ -9,7 +9,7 @@ header {
     align-items: center;
     padding: 20px;
     background-color: #6b7a89;
-    color: white;
+    color: rgb(199, 143, 143);
     position: sticky; /* Muda de fixed para sticky */
     top: 0; /* Fica no topo da tela ao rolar */
     z-index: 1000;

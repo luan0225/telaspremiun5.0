@@ -134,7 +134,7 @@ function enviarDadosWhatsApp() {
     mensagem += `\nTotal: R$ ${totalCarrinho.toFixed(2).replace('.', ',')}`;
 
     const mensagemCodificada = encodeURIComponent(mensagem);
-    const linkWhatsApp = `https://wa.me/5592994289392?text=${mensagemCodificada}`;
+    const linkWhatsApp = `https://wa.me/5592984011876?text=${mensagemCodificada}`;
 
     window.open(linkWhatsApp, '_blank');
 }

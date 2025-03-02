@@ -81,7 +81,7 @@ document.getElementById('checkout-form').addEventListener('submit', function(eve
     const mensagemCodificada = encodeURIComponent(mensagem);
 
     // Cria o link do WhatsApp
-    const linkWhatsApp = `https://wa.me/5592994289392?text=${mensagemCodificada}`;
+    const linkWhatsApp = `https://wa.me/5592984011876?text=${mensagemCodificada}`;
 
     // Redireciona para o WhatsApp
     window.open(linkWhatsApp, '_blank');
