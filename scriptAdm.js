@@ -1,3 +1,65 @@
+// Função para extrair as informações do texto da compra e calcular a data de vencimento
+function parsePurchaseInfo(purchaseText) {
+    // Expressões regulares ajustadas para lidar com diferentes modelos
+    const screenNameRegex = /🛍 (.*?) 🛍/;  // Captura o nome da tela entre os símbolos "🛍"
+    const emailRegex = /📧 EMAIL: (.*?)\s/; // Captura o e-mail da compra
+    const passwordRegex = /🔑 SENHA: (.*?)\s/; // Captura a senha
+    const additionalInfoRegex = /ℹ️ Informações Adicional:(.*)/; // Captura as informações adicionais, se existirem
+
+    const screenNameMatch = purchaseText.match(screenNameRegex);
+    const emailMatch = purchaseText.match(emailRegex);
+    const passwordMatch = purchaseText.match(passwordRegex);
+    const additionalInfoMatch = purchaseText.match(additionalInfoRegex);
+
+    if (screenNameMatch && emailMatch && passwordMatch) {
+        // Calcular a data de vencimento (1 mês após a data atual)
+        const expirationDate = new Date();
+        expirationDate.setMonth(expirationDate.getMonth() + 1);  // Adiciona 1 mês à data atual
+        const formattedExpirationDate = expirationDate.toLocaleDateString(); // Formato: dd/mm/aaaa
+
+        return {
+            screenName: screenNameMatch[1],   // Nome da tela, ex: "GLOBO SEM CANAIS +TELECINE"
+            email: emailMatch[1],             // E-mail da compra
+            password: passwordMatch[1],       // Senha
+            expiration: formattedExpirationDate, // Data de vencimento (1 mês após a data de adição)
+            additionalInfo: additionalInfoMatch ? additionalInfoMatch[1].trim() : "" // Informações adicionais, se existirem
+        };
+    } else {
+        return null;  // Caso não encontre os dados no formato esperado
+    }
+}
+
+// Função para salvar a compra no LocalStorage
+function savePurchaseInfo() {
+    const purchaseText = document.getElementById('purchaseText').value;
+    const customerName = document.getElementById('customerName').value;
+    const customerPhone = document.getElementById('customerPhone').value;
+
+    if (purchaseText && customerName && customerPhone) {
+        const purchaseInfo = parsePurchaseInfo(purchaseText);
+        purchaseInfo.customerName = customerName;
+        purchaseInfo.customerPhone = customerPhone;
+
+        if (purchaseInfo) {
+            const storedPurchases = JSON.parse(localStorage.getItem('purchases')) || [];
+            storedPurchases.push(purchaseInfo);
+            localStorage.setItem('purchases', JSON.stringify(storedPurchases));
+
+            updatePurchaseTable();
+            updateAccountCount();
+
+            document.getElementById('purchaseText').value = '';
+            document.getElementById('customerName').value = '';
+            document.getElementById('customerPhone').value = '';
+        } else {
+            alert('Não foi possível extrair as informações da compra.');
+        }
+    } else {
+        alert('Por favor, preencha todos os campos.');
+    }
+}
+
+// Função para atualizar a tabela de compras
 function updatePurchaseTable() {
     const storedPurchases = JSON.parse(localStorage.getItem('purchases')) || [];
     const tableBody = document.getElementById('infoTable').getElementsByTagName('tbody')[0];
@@ -49,62 +111,6 @@ function updatePurchaseTable() {
         actionButtons.appendChild(editDateButton);
         actionCell.appendChild(actionButtons);
     });
-}
-
-// Função para salvar a compra no LocalStorage
-function savePurchaseInfo() {
-    const purchaseText = document.getElementById('purchaseText').value;
-    const customerName = document.getElementById('customerName').value;
-    const customerPhone = document.getElementById('customerPhone').value;
-
-    if (purchaseText && customerName && customerPhone) {
-        const purchaseInfo = parsePurchaseInfo(purchaseText);
-        purchaseInfo.customerName = customerName;
-        purchaseInfo.customerPhone = customerPhone;
-
-        if (purchaseInfo) {
-            // Calcular a data de expiração (30 dias a partir de hoje)
-            const expirationDate = new Date();
-            expirationDate.setDate(expirationDate.getDate() + 30); // Adiciona 30 dias
-            purchaseInfo.expiration = expirationDate.toLocaleDateString(); // Formato: dd/mm/aaaa
-
-            const storedPurchases = JSON.parse(localStorage.getItem('purchases')) || [];
-            storedPurchases.push(purchaseInfo);
-            localStorage.setItem('purchases', JSON.stringify(storedPurchases));
-
-            updatePurchaseTable();
-            updateAccountCount();
-
-            document.getElementById('purchaseText').value = '';
-            document.getElementById('customerName').value = '';
-            document.getElementById('customerPhone').value = '';
-        } else {
-            alert('Não foi possível extrair as informações da compra.');
-        }
-    } else {
-        alert('Por favor, preencha todos os campos.');
-    }
-}
-
-// Função para extrair as informações do texto da compra
-function parsePurchaseInfo(purchaseText) {
-    const screenNameRegex = /🛍 TELA (.*?) 🛍/;
-    const emailRegex = /📧 EMAIL: (.*?)\n/;
-    const passwordRegex = /🔑 SENHA: (.*?)\n/;
-
-    const screenNameMatch = purchaseText.match(screenNameRegex);
-    const emailMatch = purchaseText.match(emailRegex);
-    const passwordMatch = purchaseText.match(passwordRegex);
-
-    if (screenNameMatch && emailMatch && passwordMatch) {
-        return {
-            screenName: screenNameMatch[1],
-            email: emailMatch[1],
-            password: passwordMatch[1]
-        };
-    } else {
-        return null;
-    }
 }
 
 // Função para atualizar a contagem de contas vendidas
