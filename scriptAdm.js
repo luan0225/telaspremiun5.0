@@ -1,4 +1,3 @@
-// Função para atualizar a tabela de compras
 function updatePurchaseTable() {
     const storedPurchases = JSON.parse(localStorage.getItem('purchases')) || [];
     const tableBody = document.getElementById('infoTable').getElementsByTagName('tbody')[0];
@@ -59,21 +58,23 @@ function savePurchaseInfo() {
     const customerPhone = document.getElementById('customerPhone').value;
 
     if (purchaseText && customerName && customerPhone) {
-        const purchaseInfo = parsePurchaseInfo(purchaseText, customerName, customerPhone);
-        
+        const purchaseInfo = parsePurchaseInfo(purchaseText);
+        purchaseInfo.customerName = customerName;
+        purchaseInfo.customerPhone = customerPhone;
+
         if (purchaseInfo) {
-            // Armazenar as informações no LocalStorage
+            // Calcular a data de expiração (30 dias a partir de hoje)
+            const expirationDate = new Date();
+            expirationDate.setDate(expirationDate.getDate() + 30); // Adiciona 30 dias
+            purchaseInfo.expiration = expirationDate.toLocaleDateString(); // Formato: dd/mm/aaaa
+
             const storedPurchases = JSON.parse(localStorage.getItem('purchases')) || [];
             storedPurchases.push(purchaseInfo);
             localStorage.setItem('purchases', JSON.stringify(storedPurchases));
 
-            // Atualiza a tabela com os dados armazenados
             updatePurchaseTable();
-
-            // Atualiza a contagem de contas vendidas
             updateAccountCount();
 
-            // Limpar os campos
             document.getElementById('purchaseText').value = '';
             document.getElementById('customerName').value = '';
             document.getElementById('customerPhone').value = '';
@@ -85,13 +86,64 @@ function savePurchaseInfo() {
     }
 }
 
-// Função para exibir a contagem de contas vendidas
+// Função para extrair as informações do texto da compra
+function parsePurchaseInfo(purchaseText) {
+    const screenNameRegex = /🛍 TELA (.*?) 🛍/;
+    const emailRegex = /📧 EMAIL: (.*?)\n/;
+    const passwordRegex = /🔑 SENHA: (.*?)\n/;
+
+    const screenNameMatch = purchaseText.match(screenNameRegex);
+    const emailMatch = purchaseText.match(emailRegex);
+    const passwordMatch = purchaseText.match(passwordRegex);
+
+    if (screenNameMatch && emailMatch && passwordMatch) {
+        return {
+            screenName: screenNameMatch[1],
+            email: emailMatch[1],
+            password: passwordMatch[1]
+        };
+    } else {
+        return null;
+    }
+}
+
+// Função para atualizar a contagem de contas vendidas
 function updateAccountCount() {
     const storedPurchases = JSON.parse(localStorage.getItem('purchases')) || [];
     document.getElementById('accountCount').textContent = storedPurchases.length;
 }
 
+// Função para remover uma compra
+function removePurchase(index) {
+    const storedPurchases = JSON.parse(localStorage.getItem('purchases')) || [];
+    storedPurchases.splice(index, 1); // Remove a compra no índice especificado
+    localStorage.setItem('purchases', JSON.stringify(storedPurchases)); // Atualiza o LocalStorage
+    updatePurchaseTable(); // Atualiza a tabela
+    updateAccountCount(); // Atualiza a contagem de contas
+}
+
+// Função para copiar a informação de login
+function copyMessage(purchaseInfo) {
+    const message = `Olá ${purchaseInfo.customerName},\n\nSua compra foi realizada com sucesso\n\nEmail: ${purchaseInfo.email}\nSenha: ${purchaseInfo.password}\n\nTela de acesso único, não use em dois aparelhos, sujeito a perder o acesso.\n\nData de expiração: ${purchaseInfo.expiration}\n\nAgradecemos a preferência.`;
+    navigator.clipboard.writeText(message).then(() => {
+        alert('Informações de login copiadas!');
+    });
+}
+
+// Função para alterar a data de expiração
+function changeExpirationDate(index) {
+    const newExpiration = prompt("Digite a nova data de expiração (formato: dd/mm/aaaa):");
+    if (newExpiration) {
+        const storedPurchases = JSON.parse(localStorage.getItem('purchases')) || [];
+        storedPurchases[index].expiration = newExpiration;
+        localStorage.setItem('purchases', JSON.stringify(storedPurchases));
+        updatePurchaseTable();
+    } else {
+        alert('Data inválida!');
+    }
+}
+
 window.onload = function () {
     updatePurchaseTable();
-    updateAccountCount();  // Inicializa a contagem de contas vendidas
+    updateAccountCount();
 };
