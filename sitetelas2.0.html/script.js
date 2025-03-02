@@ -53,6 +53,9 @@ function updateCarrinho() {
     const listaItens = document.getElementById('lista-itens');
     listaItens.innerHTML = '';
 
+    // Recalcula o total do carrinho
+    totalCarrinho = 0;
+
     carrinho.forEach((item, index) => {
         const li = document.createElement('li');
         li.className = 'item-carrinho';
@@ -64,18 +67,30 @@ function updateCarrinho() {
             </div>
         `;
         listaItens.appendChild(li);
+
+        // Soma o preço de cada item no total
+        totalCarrinho += item.preco;
     });
 
+    // Garante que o totalCarrinho não será negativo
+    totalCarrinho = Math.max(0, totalCarrinho);
+
+    // Atualiza o total exibido no carrinho
     document.getElementById('total-carrinho').innerText = 'Total: R$ ' + totalCarrinho.toFixed(2).replace('.', ',');
 }
 
 function removeItem(index) {
+    // Subtrai o preço do item removido
     totalCarrinho -= carrinho[index].preco;
+
+    // Remove o item do carrinho
     carrinho.splice(index, 1);
 
+    // Armazena novamente no localStorage
     localStorage.setItem('carrinho', JSON.stringify(carrinho));
     localStorage.setItem('totalCarrinho', totalCarrinho.toFixed(2));
 
+    // Atualiza o carrinho na interface
     updateCarrinho();
 }
 
@@ -119,7 +134,9 @@ function enviarDadosWhatsApp() {
     mensagem += `\nTotal: R$ ${totalCarrinho.toFixed(2).replace('.', ',')}`;
 
     const mensagemCodificada = encodeURIComponent(mensagem);
-    const linkWhatsApp = `https://wa.me/5592994289392?text=${mensagemCodificada}`;
+    const linkWhatsApp = `https://wa.me/5592984011876?text=${mensagemCodificada}`;
 
     window.open(linkWhatsApp, '_blank');
 }
+
+
