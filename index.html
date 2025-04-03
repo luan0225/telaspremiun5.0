@@ -123,7 +123,7 @@
              <button class="btn-opcoes" onclick="toggleOpcoes(this)" aria-expanded="false">Adicionar opções</button>
             <div class="opcoes">
                 <button class="option-button" onclick="selectOption(this, 'images/premiere.png')">premiere - sem estoque </button>
-                <button class="option-button" onclick="selectOption(this, 'images/premiere.png')">premiere+combat - sem estoque </button>
+                
             </div>
         </div>
 
@@ -224,8 +224,21 @@
    
 </main>
 
+<div id="promoModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="fecharModal()">&times;</span>
+        <img src="images/disney.png" alt="Promoção Disney+" class="promo-banner">
+        <h2>Promoção Especial!</h2>
+        <p>Disney+ Star por apenas <strong>R$ 12,00</strong> até <strong>05/04</strong>!</p>
+        <p>Aproveite essa oferta por tempo limitado.</p>
+        <a href="#" class="cta-btn" onclick="enviarWhatsApp()">Compre Agora</a>
+
+    </div>
+
 <script src="script.js"></script>
+
 </body>
+
 <footer class="footer">
     <div class="footer-container">
         <!-- Seção Sobre -->

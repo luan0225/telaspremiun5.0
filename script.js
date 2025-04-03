@@ -139,4 +139,28 @@ function enviarDadosWhatsApp() {
     window.open(linkWhatsApp, '_blank');
 }
 
+document.addEventListener("DOMContentLoaded", function() {
+    let promoModal = document.getElementById("promoModal");
+
+    // Exibe o modal apenas uma vez por sessão
+    if (!sessionStorage.getItem("promoExibida")) {
+        promoModal.style.display = "flex";
+        sessionStorage.setItem("promoExibida", "true");
+    }
+});
+
+// Fecha o modal
+function fecharModal() {
+    document.getElementById("promoModal").style.display = "none";
+}
+
+function enviarWhatsApp() {
+    let numero = "5592984011876"; // Seu número de WhatsApp com DDD e código do país (55 para Brasil)
+    let mensagem = encodeURIComponent("Olá! Quero aproveitar a promoção Disney+ por R$ 12,00 até 05/04!");
+    
+    let url = `https://wa.me/${numero}?text=${mensagem}`;
+    
+    window.open(url, "_blank");
+}
+
 
