@@ -15,6 +15,7 @@
         <nav>
             <a href="#produtos">Produtos</a>
             <a href="#" id="combos-link">Combos</a>
+            <a href="#doacao">Doação</a>
             <a href="#" id="admin-link">Admin</a> <!-- Alterado para usar JavaScript -->
             <a href="https://wa.me/5592984011876" style="color:white;">Suporte</a>
             <div class="carrinho" onclick="toggleCarrinho()">
@@ -69,13 +70,13 @@
             <div class="opcoes">
                 <button class="option-button" onclick="selectOption(this, 'images/prime.png')">primeVideo - R$ 10,00</button>
                 <button class="option-button" onclick="selectOption(this, 'images/prime+max.png')">prime+max - R$ 15,00</button>
-                <button class="option-button" onclick="selectOption(this, 'images/prime-telecine.png')">prime+paramount - R$ 12,00</button>
-                <button class="option-button" onclick="selectOption(this, 'images/prime-telecine-max.png')">prime+premiere - R$ 21,00</button>
-                <button class="option-button" onclick="selectOption(this, 'images/prime-telecine-max-premiere.png')">prime+Telecine+max+premiere+paramount - R$ 30,00</button>
-                <button class="option-button" onclick="selectOption(this, 'images/prime-telecine-max-premiere.png')">prime+max+paramount - R$ 16,00</button>
+                <button class="option-button" onclick="selectOption(this, 'images/prime-telecine.png')">prime+combat - R$ 20,00</button>
+                <button class="option-button" onclick="selectOption(this, 'images/prime-telecine-max.png')">prime+premiere - R$ 15,00</button>
+                <button class="option-button" onclick="selectOption(this, 'images/prime-telecine-max-premiere.png')">prime+Telecine+max+aplletv - R$ 15,00</button>
+                <button class="option-button" onclick="selectOption(this, 'images/prime-telecine-max-premiere.png')">prime+max+paramount - R$ 10,00</button>
                 <button class="option-button" onclick="selectOption(this, 'images/prime-telecine-max-premiere.png')">prime+preimere+max+telecine - R$ 20,00</button>
-                <button class="option-button" onclick="selectOption(this, 'images/prime-telecine-max-premiere.png')">prime+max+MGM+paramount+universal+telecine - R$ 25,00</button>
-                <button class="option-button" onclick="selectOption(this, 'images/prime-telecine-max-premiere.png')">prime+ 9 adicionais  - R$ 45,00</button>
+                <button class="option-button" onclick="selectOption(this, 'images/prime-telecine-max-premiere.png')">prime+max+MGM+paramount+universal+telecine - R$ 20,00</button>
+                <button class="option-button" onclick="selectOption(this, 'images/prime-telecine-max-premiere.png')">prime+ 9 adicionais  - R$ 30,00</button>
 
             </div>
         </div>
@@ -95,6 +96,7 @@
              <img src="images/disney.png" alt="disney" class="produto-imagem">
              <button class="btn-opcoes" onclick="toggleOpcoes(this)" aria-expanded="false">Adicionar opções</button>
             <div class="opcoes">
+                <button class="option-button" onclick="selectOption(this, 'images/disney.png')">Disney promocional até 05/04 - R$ 12,00</button>
                 <button class="option-button" onclick="selectOption(this, 'images/disney.png')">Disney+Star 1 mês - R$ 15,00</button>
                 <button class="option-button" onclick="selectOption(this, 'images/disney.png')">Disney+Star 2 meses - R$ 28,00</button>
             </div>
@@ -105,10 +107,10 @@
              <img src="images/globoPlay.png" alt="globoPlay" class="produto-imagem">
              <button class="btn-opcoes" onclick="toggleOpcoes(this)" aria-expanded="false">Adicionar opções</button>
             <div class="opcoes">
-                <button class="option-button" onclick="selectOption(this, 'images/globoPlay.png')">GloboPlay sem canais - R$ 18,00</button>
-                <button class="option-button" onclick="selectOption(this, 'images/globo+premiere.png')">GloboPlay sem canais + premiere - R$ 25,00</button>
-                <button class="option-button" onclick="selectOption(this, 'images/Globo+canais.png')">GloboPlay+ Canais + premiere - R$ 30,00</button>
-                <button class="option-button" onclick="selectOption(this, 'images/globo+combat.png')">GloboPlay+canais+Premiere+Combat - R$ 45,00</button>
+                <button class="option-button" onclick="selectOption(this, 'images/globoPlay.png')">GloboPlay sem canais - R$ sem estoque </button>
+                <button class="option-button" onclick="selectOption(this, 'images/globo+premiere.png')">GloboPlay sem canais + premiere - sem estoque </button>
+                <button class="option-button" onclick="selectOption(this, 'images/Globo+canais.png')">GloboPlay+ Canais + premiere - sem estoque </button>
+                <button class="option-button" onclick="selectOption(this, 'images/globo+combat.png')">GloboPlay+canais+Premiere+Combat - sem estoque </button>
                 <button class="option-button" onclick="selectOption(this, 'images/globoPlay.png')">GloboPlay+canais - R$ 23,00</button>
                 <button class="option-button" onclick="selectOption(this, 'images/globo+tele.png')">GloboPlay+ canais + telecine - R$ 28,00</button>
             </div>
@@ -120,8 +122,8 @@
              <img src="images/premiere.png" alt="Primiere" class="produto-imagem">
              <button class="btn-opcoes" onclick="toggleOpcoes(this)" aria-expanded="false">Adicionar opções</button>
             <div class="opcoes">
-                <button class="option-button" onclick="selectOption(this, 'images/premiere.png')">premiere - R$ 25,00</button>
-                <button class="option-button" onclick="selectOption(this, 'images/premiere.png')">premiere+combat - R$ 30,00</button>
+                <button class="option-button" onclick="selectOption(this, 'images/premiere.png')">premiere - sem estoque </button>
+                <button class="option-button" onclick="selectOption(this, 'images/premiere.png')">premiere+combat - sem estoque </button>
             </div>
         </div>
 
@@ -147,6 +149,7 @@
                 <button class="option-button" onclick="selectOption(this, 'images/crunchyroll.png')">amazon music - 1 mês R$ 12,00</button>
                 <button class="option-button" onclick="selectOption(this, 'images/crunchyroll.png')">aplle music - 1 mês R$ 12,00</button>
                 <button class="option-button" onclick="selectOption(this, 'images/crunchyroll.png')">play plus - 1 mês R$ 15,00</button>
+                <button class="option-button" onclick="selectOption(this, 'images/crunchyroll.png')">Crunchyrrol- 1 mês R$ 15,00</button>
                 
             </div>
         </div>
