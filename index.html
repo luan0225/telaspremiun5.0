@@ -14,7 +14,6 @@
         </div>
         <nav>
             <a href="#produtos">Produtos</a>
-            <a href="#" id="combos-link">Combos</a>
             <a href="#doacao">Doação</a>
             <a href="#" id="admin-link">Admin</a> <!-- Alterado para usar JavaScript -->
             <a href="https://wa.me/5592984011876" style="color:white;">Suporte</a>
@@ -221,19 +220,21 @@
     
     <script src="script.js"></script>
     </body>
+
+    <div id="promoModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal()">&times;</span>
+            <img src="images/disney.png" alt="Promoção Disney+" class="promo-banner">
+            <h2>Promoção Especial!</h2>
+            <p>Disney+ Star por apenas <strong>R$ 12,00</strong> até <strong>05/04</strong>!</p>
+            <p>Aproveite essa oferta por tempo limitado.</p>
+            <a href="#" class="cta-btn" onclick="enviarWhatsApp()">Compre Agora</a>
+    
+        </div>
    
 </main>
 
-<div id="promoModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="fecharModal()">&times;</span>
-        <img src="images/disney.png" alt="Promoção Disney+" class="promo-banner">
-        <h2>Promoção Especial!</h2>
-        <p>Disney+ Star por apenas <strong>R$ 12,00</strong> até <strong>05/04</strong>!</p>
-        <p>Aproveite essa oferta por tempo limitado.</p>
-        <a href="#" class="cta-btn" onclick="enviarWhatsApp()">Compre Agora</a>
 
-    </div>
 
 <script src="script.js"></script>
 
@@ -263,8 +264,8 @@
         <div class="footer-section">
             <h4>Contato</h4>
             <ul>
-                <li><a href="tel:+1234567890">Telefone: +55 (92) 994289392</a></li>
-                <li><a href="mailto:contato@seusite.com">Email: lincolnluan109@gmail.com</a></li>
+                <li><a href="tel:+5592995289392">Telefone: +55 (92) 994289392</a></li>
+                <li><a href="lincolnluan109@gmail.com">Email: lincolnluan109@gmail.com</a></li>
                 <li>Endereço: Rua Alegria 3435, itacoatiara Amazonas</li>
             </ul>
         </div>
