@@ -39,8 +39,10 @@ const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
 // Lista de cupons válidos
 const cuponsValidos = {
     "ARTHUR": 0.10,      // 10% de desconto
-    "CLIENTEVIP": 0.50   // 50% de desconto
+    "CLIENTEVIP": 0.50,  // 50% de desconto
+    "JOANE": 0.20        // 20% de desconto
 };
+
 
 // Função para calcular o total do carrinho
 function calcularTotalCarrinho() {

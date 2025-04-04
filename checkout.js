@@ -6,17 +6,24 @@ const carrinho = [
 
 // Cupons de desconto
 const cupons = {
-    "ARTHUR": 0.10,      // 10% de desconto
-    "CLIENTEVIP": 0.50   // 50% de desconto
+    "JOANE": 0.05,      // 10% de desconto
+    "CLIENTEVIP": 0.50,  // 50% de desconto
+    "JOANE": 0.05        // 5% de desconto
 };
 
 // Função para calcular o total com cupom
 function calcularTotal(carrinho, cupom) {
     let total = carrinho.reduce((acc, item) => acc + item.preco, 0);
 
+    console.log(`Total original: R$ ${total.toFixed(2)}`);
+    console.log(`Cupom digitado: ${cupom}`);
+
     if (cupons[cupom]) {
         let desconto = total * cupons[cupom]; // Aplica o desconto corretamente
         total -= desconto;
+        console.log(`Desconto de ${cupons[cupom] * 100}% aplicado: R$ ${desconto.toFixed(2)}`);
+    } else {
+        console.log("Nenhum cupom válido aplicado.");
     }
 
     return total;
