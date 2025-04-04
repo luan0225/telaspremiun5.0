@@ -6,7 +6,7 @@ const carrinho = [
 
 // Cupons de desconto
 const cupons = {
-    "JOANE": 0.05,      // 10% de desconto
+    "ARTHUR": 0.05,      // 5% de desconto
     "CLIENTEVIP": 0.50,  // 50% de desconto
     "JOANE": 0.05        // 5% de desconto
 };
@@ -35,19 +35,21 @@ function formatarMoeda(valor) {
 }
 
 // Função para gerar a mensagem do pedido
-function gerarMensagem(nome, formaPagamento, telefone, cupom, total) {
+function gerarMensagem(nome, formaPagamento, telefone, cupom, totalComDesconto) {
     let mensagem = `Nome: ${nome}\nForma de pagamento: ${formaPagamento}\nTelefone: ${telefone}\nProdutos:\n`;
 
     carrinho.forEach(item => {
         mensagem += `- ${item.produto}: ${formatarMoeda(item.preco)}\n`;
     });
 
+    let totalOriginal = carrinho.reduce((acc, item) => acc + item.preco, 0);
+
     if (cupons[cupom]) {
-        let valorDesconto = (carrinho.reduce((acc, item) => acc + item.preco, 0)) * cupons[cupom];
+        let valorDesconto = totalOriginal - totalComDesconto;
         mensagem += `\nCupom aplicado: ${cupom}\nDesconto: ${formatarMoeda(valorDesconto)}\n`;
     }
 
-    mensagem += `\nTotal: ${formatarMoeda(total)}`;
+    mensagem += `\nTotal: ${formatarMoeda(totalComDesconto)}`;
     return mensagem;
 }
 
