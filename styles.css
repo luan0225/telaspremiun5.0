@@ -639,19 +639,21 @@ footer {
 
 
 /* Centralizar o modal na tela */
+/* Centralizar o modal na tela */
 .modal-content {
     background: white;
-    padding: 20px;
+    padding: 15px; /* Menor espaçamento interno */
     border-radius: 10px;
     text-align: center;
     width: 90%;
-    max-width: 400px;
+    max-width: 300px; /* Reduzido de 400px para 300px */
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
 
 
 /* Botão de fechar */
