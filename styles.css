@@ -638,23 +638,34 @@ footer {
 }
 
 
-/* Centralizar o modal na tela */
-/* Centralizar o modal na tela */
+/* Estilo do conteúdo do modal */
 .modal-content {
-    background: white;
-    padding: 15px; /* Menor espaçamento interno */
-    border-radius: 10px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 15px;
     text-align: center;
     width: 90%;
-    max-width: 300px; /* Reduzido de 400px para 300px */
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    max-width: 320px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    font-family: 'Arial', sans-serif;
+    animation: fadeInScale 0.3s ease;
 }
 
-
+/* Animação de entrada suave */
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
 
 /* Botão de fechar */
 .close {
@@ -662,30 +673,64 @@ footer {
     top: 10px;
     right: 15px;
     font-size: 24px;
+    font-weight: bold;
+    color: #999;
     cursor: pointer;
+    transition: color 0.3s ease;
 }
 
-/* Estilo da imagem do banner */
+.close:hover {
+    color: #333;
+}
+
+/* Imagem promocional */
 .promo-banner {
     width: 100%;
     max-width: 350px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Botão de ação */
 .cta-btn {
     display: inline-block;
-    background: #007bff;
+    background: linear-gradient(135deg, #007bff, #0056b3);
     color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
+    padding: 12px 25px;
+    border-radius: 8px;
     text-decoration: none;
     font-weight: bold;
+    font-size: 15px;
+    transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .cta-btn:hover {
-    background: #0056b3;
+    background: linear-gradient(135deg, #0056b3, #003f8a);
+    transform: scale(1.05);
 }
+
+/* Responsividade para mobile */
+@media (max-width: 480px) {
+    .modal-content {
+        width: 95%;
+        max-width: 280px;
+        padding: 15px;
+    }
+
+    .cta-btn {
+        width: 100%;
+        padding: 14px 0;
+        font-size: 16px;
+    }
+
+    .close {
+        font-size: 22px;
+        top: 8px;
+        right: 10px;
+    }
+}
+
 
 
 
