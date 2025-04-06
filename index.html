@@ -45,15 +45,17 @@
 
     <div class="carousel">
         <div class="carousel-images" id="carousel-images">
-            <img src="images/ATT.PNG" alt="Imagem 1" class="active">
-            <img src="images/att2.png" alt="Imagem 4">
-            <img src="images/att3.png" alt="Imagem 7">
-            <img src="images/att4.png" alt="Imagem 8">
-            <img src="images/att6.png" alt="Imagem 9">
-            <img src="images/att7.png" alt="Imagem 10">
-            <img src="images/att8.png" alt="Imagem 11">
-            <img src="images/att10.png" alt="Imagem 12">
-            <img src="images/att12.png" alt="Imagem 13">
+            <img src="images/carrosel1.png" alt="Imagem 1" class="active">
+            <img src="images/carrosel2.png" alt="Imagem 4">
+            <img src="images/carrosel3.png" alt="Imagem 7">
+            <img src="images/carrosel4.png" alt="Imagem 8">
+            <img src="images/carrosel5.png" alt="Imagem 9">
+            <img src="images/carrosel6.png" alt="Imagem 10">
+            <img src="images/carrosel7.webp" alt="Imagem 11">
+            <img src="images/carrossel8.png" alt="Imagem 12">
+            <img src="images/carrosel9.png" alt="Imagem 13">
+            <img src="images/carrosel11.png" alt="Imagem 14">
+            <img src="images/carrosel12.png" alt="Imagem 15">
         </div>
     </div>
 
@@ -67,7 +69,7 @@
             <img src="images/prime.png" alt="Prime Video" class="produto-imagem">
             <button class="btn-opcoes" onclick="toggleOpcoes(this)" aria-expanded="false">Adicionar opções</button>
             <div class="opcoes">
-                <button class="option-button" onclick="selectOption(this, 'images/prime.png')">primeVideo - R$ 10,00</button>
+                <button class="option-button" onclick="selectOption(this, 'images/prime.png')">primeVideo - R$ 12,00</button>
                 <button class="option-button" onclick="selectOption(this, 'images/prime+max.png')">prime+max - R$ 15,00</button>
                 <button class="option-button" onclick="selectOption(this, 'images/prime-telecine.png')">prime+combat - R$ 20,00</button>
                 <button class="option-button" onclick="selectOption(this, 'images/prime-telecine-max.png')">prime+premiere - R$ 15,00</button>
@@ -87,6 +89,7 @@
             <div class="opcoes">
                 <button class="option-button" onclick="selectOption(this, 'images/netflix.png')">Netflix 1 mês - R$ 18,00</button>
                 <button class="option-button" onclick="selectOption(this, 'images/netflix.png')">Netflix 2 meses - R$ 33,00</button>
+                <button class="option-button" onclick="selectOption(this, 'images/netflix.png')">Netflix sem cod - R$ 20,00</button>
             </div>
        </div>
         <div class="produto">
@@ -159,10 +162,24 @@
              <img src="images/max.png" alt="crunchyroll" class="produto-imagem">
              <button class="btn-opcoes" onclick="toggleOpcoes(this)" aria-expanded="false">Adicionar opções</button>
             <div class="opcoes">
-                <button class="option-button" onclick="selectOption(this, 'images/crunchyroll.png')">Max - 1 mês R$ 18,00</button>
+             <button class="option-button" onclick="selectOption(this, 'images/crunchyroll.png')">Max - 1 mês R$ 18,00</button>
                 
             </div>
         </div>
+
+        <div class="produto">
+            <h3>claro TV</h3>
+             <!-- Adicione a imagem do produto aqui -->
+             <img src="images/claro.png.png" alt="crunchyroll" class="produto-imagem">
+             <button class="btn-opcoes" onclick="toggleOpcoes(this)" aria-expanded="false">Adicionar opções</button>
+            <div class="opcoes">
+             <button class="option-button" onclick="selectOption(this, 'images/claro.png.png')">Claro TV+Premiere+ telecine - 1 mês R$ 30,00</button>
+                
+            </div>
+        </div>
+
+
+        
     </div>
 
 
@@ -224,9 +241,9 @@
     <div id="promoModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="fecharModal()">&times;</span>
-            <img src="images/disney.png" alt="Promoção Disney+" class="promo-banner">
+            <img src="images/adicionais.png" alt="Promoção Disney+" class="promo-banner">
             <h2>Promoção Especial!</h2>
-            <p>Disney+ Star por apenas <strong>R$ 12,00</strong> até <strong>05/04</strong>!</p>
+            <p>Prime+ 9 adcionais <strong>R$ 35,00</strong> até <strong>05/05</strong>!</p>
             <p>Aproveite essa oferta por tempo limitado.</p>
             <a href="#" class="cta-btn" onclick="enviarWhatsApp()">Compre Agora</a>
     
